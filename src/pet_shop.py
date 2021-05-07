@@ -14,7 +14,7 @@ def get_pets_sold(pet_shop):
 
 def increase_pets_sold(pet_shop, enter_amount):
     # pet_shop["admin"]["pets_sold"] += enter_amount
-    pet_shop["admin"]["pets_sold"] = enter_amount + get_total_cash(pet_shop["admin"]["total_cash"])
+    pet_shop["admin"]["pets_sold"] = enter_amount + get_pets_sold(pet_shop)
 
 def get_stock_count(pet_shop):
     return len(pet_shop["pets"])
@@ -33,7 +33,41 @@ def find_pet_by_name(pet_shop, pet_name):
             return pet # return value
 
 # def remove_pet_by_name(pet_shop, pet_name):
-    # for pet in pet_shop["pets"]:
-    #     if  pet["name"] == pet_name:
-    #         pet["name"].pop
+#     for pet in pet_shop["pets"]:
+#         if pet == pet_name:
+#             pet_shop["pets"].remove
+        
+
+def add_pet_to_stock(pet_shop, new_pet):
+    pet_shop["pets"].append(new_pet)
     
+def get_customer_cash(customers):
+    return customers["cash"]   
+
+def remove_customer_cash(customers, give_amount):
+    customers["cash"] -= give_amount
+
+def get_customer_pet_count(customers):
+    return len(customers["pets"]) #why do we use len here but in when getting customer cash
+
+def add_pet_to_customer(customers, new_pet):
+    customers["pets"].append(new_pet) # we need to tell function where to append inside customers list.
+    return customers
+
+def customer_can_afford_pet(customers, new_pet):
+    while customers["cash"] >= new_pet["price"]: #the loop goes through cust cash and if its >= to new pet dict it return true
+        return True # it is important to read the arguement the test gives.
+    else:
+        return False
+
+def sell_pet_to_customer(pet_shop, pet, customer):
+    while pet_shop["pets"] == pet and customer["cash"] >= pet_shop["pets"]["price"]:
+        customer["pets"] =+ pet
+                                         #self.assertEqual(1, get_customer_pet_count(customer))
+                                      # self.assertEqual(1, get_pets_sold(self.cc_pet_shop))
+                                      # self.assertEqual(100, get_customer_cash(customer))
+                                      # self.assertEqual(1900, get_total_cash(self.cc_pet_shop))
+                                        # "name": "Alice",
+                                        # "pets": [],
+                                        # "cash": 1000
+
